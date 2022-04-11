@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f539cab656e29d2439e7f2c17f5b4443, type: 3}
-  m_Name: LaserBeamerBlueprint
+  m_Name: MissileLauncherBlueprint
   m_EditorClassIdentifier: 
-  Name: LaserBeamer
+  Name: MissileLauncher
   prefabs:
-  - {fileID: 8792194476830839133, guid: 9fa7df1505e61b444a82990479512745, type: 3}
-  - {fileID: 8792194476830839133, guid: 3572fc009839b5e458581f1d8e6c03db, type: 3}
-  Sprite: {fileID: 21300000, guid: 0947b83329157c64da913253f90abba1, type: 3}
-  cost: 450
-  upgradedCost: 250
+  - {fileID: 2387161189058449712, guid: cda19c5865b249b48962320535f9d202, type: 3}
+  - {fileID: 2387161189058449712, guid: 5462b1e73f418514db7ec5e233a096dc, type: 3}
+  Sprite: {fileID: 21300000, guid: c8f501e11648a1f458b678b81c3754bd, type: 3}
+  cost: 250
+  upgradedCost: 125

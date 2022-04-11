@@ -17,6 +17,7 @@ public class TurretController : MonoBehaviour
     [Header("Use Laser")]
     public bool useLaser = false;
     public int damageOverTime=30;
+    [Range(0f, 1f)]
     public float SlowPct = .5f;
 
     public LineRenderer lineRenderer;
@@ -188,13 +189,6 @@ public class TurretController : MonoBehaviour
         Vector3 iEdir = firePoint.position - target.position;
         impactEffect.transform.position = target.position + iEdir.normalized * .3f;
         impactEffect.transform.rotation = Quaternion.LookRotation(iEdir);
-    }
-
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, GetComponent<StructureStats>().range);
     }
 
 }

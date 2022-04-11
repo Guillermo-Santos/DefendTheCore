@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 236748662898755362}
   - component: {fileID: 5502583714496424592}
   m_Layer: 9
-  m_Name: HealerTurret
+  m_Name: RepairTurret
   m_TagString: StrategicTurret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

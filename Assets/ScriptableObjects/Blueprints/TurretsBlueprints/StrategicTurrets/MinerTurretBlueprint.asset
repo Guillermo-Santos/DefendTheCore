@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f539cab656e29d2439e7f2c17f5b4443, type: 3}
+  m_Name: MinerTurretBlueprint
+  m_EditorClassIdentifier: 
+  Name: MinerTurret
+  prefabs:
+  - {fileID: 834793192017934460, guid: df47f26445fc18648ad6734818ea8dcd, type: 3}
+  Sprite: {fileID: 21300000, guid: bec1eaff17c995f439d250395188edd1, type: 3}
+  cost: 250
+  upgradedCost: 0

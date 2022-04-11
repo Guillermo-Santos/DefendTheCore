@@ -126,4 +126,10 @@ public class StructureStats : MonoBehaviour
         StopCoreProduction();
     }
 
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
+    }
+
 }

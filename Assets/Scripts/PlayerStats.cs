@@ -32,16 +32,20 @@ public class PlayerStats : MonoBehaviour
         Debug.Log(Energy + " / " + getEnProduction() + "\n" + materials + " / " + getMatProduction() );
     }
 
-    float getEnProduction()
+    public float getEnProduction()
     {
         return EnGeneration - EnConsumption;
     }
 
-    float getMatProduction()
+    public float getMatProduction()
     {
         return MatGeneration;
     }
 
+    public float getEnergyAmount()
+    {
+        return Energy / maxEnergy;
+    }
     void MaterialGeneration()
     {
         materials += (MatGeneration * Time.deltaTime);
