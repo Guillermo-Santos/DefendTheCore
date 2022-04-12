@@ -84,7 +84,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target.position.x, target.position.z)) <= 0.3f)
                 {
-                    getNextWaypoint();
+                    NextAction();
                 }
             }
         }
@@ -95,6 +95,17 @@ public class EnemyMovement : MonoBehaviour
         
 
         stats.speed = stats.startSpeed;
+    }
+
+    void NextAction()
+    {
+        StructureStats targetstats;
+        if (target.TryGetComponent<StructureStats>(out targetstats))
+        {
+            EndPath(targetstats);
+            return;
+        }
+        getNextWaypoint();
     }
 
     void HeightControl()
@@ -187,9 +198,12 @@ public class EnemyMovement : MonoBehaviour
 
     void getNextWaypoint()
     {
+        //as this method is called when the waypoint is not a core or structure, this if
+        //prevent any errors by restaring the waypoints so that the enemy move on a loop when there is not a core
+        //on the way
         if (wavepointIndex >= WayPoints.points.Length - 1)
         {
-            EndPath();
+            resetTarget();
             return;
         }
 
@@ -198,13 +212,13 @@ public class EnemyMovement : MonoBehaviour
         setDirection();
     }
 
-    void EndPath()
+    void EndPath(StructureStats target)
     {
-        //PlayerStats.Lives--;
-        //WaveSpawner.EnemiesAlive--;
-        //Destroy(gameObject);
+        target.TakeDamage(stats.impactDamage);
+        WaveSpawner.EnemiesAlive--;
+        Destroy(gameObject);
         // This line is for testing. it make the enemy to restart from the firstwaypoint
-        resetTarget();
+        //resetTarget();
     }
 
 }

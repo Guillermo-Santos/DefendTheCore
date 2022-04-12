@@ -16,6 +16,7 @@ public class Nodo : MonoBehaviour, IMouse
     public TurretBlueprint turretBlueprint;
     public bool isUpgraded = false;
 
+    private int upgradeIndex;
     private Renderer rend;
     private Color StartColor;
 
@@ -31,6 +32,7 @@ public class Nodo : MonoBehaviour, IMouse
         rend = GetComponent<Renderer>();
         StartColor = rend.material.color;
         buildManager = BuildManager.instance;
+        upgradeIndex = 0;
     }
 
     void BuildTurret(TurretBlueprint blueprint)
@@ -40,15 +42,20 @@ public class Nodo : MonoBehaviour, IMouse
             return;
         }
         PlayerStats.materials -= blueprint.cost;
-        GameObject _turret = Instantiate(blueprint.prefabs[0], GetBuildPosition(), Quaternion.identity);
+        GameObject _turret = Instantiate(blueprint.prefabs[0], GetBuildPosition(), blueprint.prefabs[0].transform.rotation);
         turret = _turret;
         turretBlueprint = blueprint;
+
+        if(!(blueprint.prefabs.Count > 1))
+            isUpgraded = true;
+
         GameObject effect = Instantiate(buildManager.BuildEffect, GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 2f);
     }
 
     public void UpgradeTurret()
     {
+        upgradeIndex++;
         if (PlayerStats.materials < turretBlueprint.upgradedCost)
         {
             return;
@@ -57,13 +64,14 @@ public class Nodo : MonoBehaviour, IMouse
         //Destroy old turret
         Destroy(turret);
         //Build Upgraded turret
-        GameObject _turret = Instantiate(turretBlueprint.prefabs[1], GetBuildPosition(), Quaternion.identity);
+        GameObject _turret = Instantiate(turretBlueprint.prefabs[upgradeIndex], GetBuildPosition(), turretBlueprint.prefabs[upgradeIndex].transform.rotation);
         turret = _turret;
         turretBlueprint.cost += turretBlueprint.upgradedCost;
 
         GameObject effect = Instantiate(buildManager.BuildEffect, GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 2f);
-        isUpgraded = true;
+        if(upgradeIndex >= turretBlueprint.prefabs.Count - 1)
+            isUpgraded = true;
     }
     public void SellTurret()
     {
@@ -77,7 +85,7 @@ public class Nodo : MonoBehaviour, IMouse
         turretBlueprint = null;
 
 
-
+        upgradeIndex = 0;
         isUpgraded = false;
     }
 

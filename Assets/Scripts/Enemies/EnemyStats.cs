@@ -9,6 +9,7 @@ public class EnemyStats : MonoBehaviour
     public float startHealth = 100f;
     public int MoneyDrop = 50;
     public float startSpeed = 2f;
+    public int impactDamage = 5;
 
     [Header("Enemy Movement")]
     [Range(0f, 2f)]

@@ -29,7 +29,6 @@ public class PlayerStats : MonoBehaviour
     {
         EnergyGeneration();
         MaterialGeneration();
-        Debug.Log(Energy + " / " + getEnProduction() + "\n" + materials + " / " + getMatProduction() );
     }
 
     public float getEnProduction()

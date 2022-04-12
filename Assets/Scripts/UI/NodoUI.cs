@@ -32,13 +32,27 @@ public class NodoUI : MonoBehaviour
             upgradeButton.interactable = false;
         }
         sellGains.text = "$" + target.turretBlueprint.GetSellAmount();
-        SetTurretInfo(nodo.turret.GetComponent<TurretController>());
+
+
+        turretName.text = target.turretBlueprint.Name;
+        TurretController turret;
+        ElectricTurretController electricTurret;
+        if (nodo.turret.TryGetComponent<TurretController>(out turret))
+        {
+            SetTurretInfo(turret);
+        }
+        else if(nodo.turret.TryGetComponent<ElectricTurretController>(out electricTurret))
+        {
+            SetTurretInfo(electricTurret);
+        }
+        else{
+            SetTurretInfo(nodo.turret.GetComponent<StructureStats>());
+        }
         ui.SetActive(true);
     }
 
     public void SetTurretInfo(TurretController turret)
     {
-        turretName.text = target.turretBlueprint.Name;
         turretRange.text = "Range: " + turret.stats.range;
         if (turret.useLaser)
         {
@@ -51,6 +65,17 @@ public class NodoUI : MonoBehaviour
         }
     }
 
+    public void SetTurretInfo(ElectricTurretController turret)
+    {
+        turretRange.text = "Range: " + turret.stats.range;
+        turretDamage.text = "Slownes: " + turret.SlowPct * 100 + "%";
+    }
+
+    public void SetTurretInfo(StructureStats turret)
+    {
+        turretRange.text = "Range: " + turret.range;
+        turretDamage.text = "Prodution: " + turret.products[0].productionType.ToString() + "\nAmount: " + turret.products[0].production;
+    }
     public void Hide()
     {
         ui.SetActive(false);

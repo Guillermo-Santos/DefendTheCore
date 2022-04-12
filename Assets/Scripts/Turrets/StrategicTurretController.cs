@@ -42,7 +42,8 @@ public class StrategicTurretController : MonoBehaviour
         foreach(string tag in Objetive_Tag)
         {
             GameObject[] found = GameObject.FindGameObjectsWithTag(tag);
-            pTargets.AddRange(found);
+            if(found != null && found.Length > 0)
+                pTargets.AddRange(found);
         }
         return pTargets.ToArray();
     }
@@ -51,11 +52,11 @@ public class StrategicTurretController : MonoBehaviour
     {
         if (stats.isWorking)
         {
-            GameObject[] enemies = posibleTargets();
+            GameObject[] targets = posibleTargets();
             float MinDistance = Mathf.Infinity;
             float distanceToTarget;
             GameObject nearestTarget = null;
-            foreach (GameObject target in enemies)
+            foreach (GameObject target in targets)
             {
                 //this condition prevent the healer turret to select it selft
                 if (!this.gameObject.Equals(target))
@@ -63,8 +64,9 @@ public class StrategicTurretController : MonoBehaviour
                     distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
                     if (stats.isHealer)
                     {
+                        Debug.Log(target.name);
                         StructureStats structure = target.GetComponent<StructureStats>();
-                        if ((distanceToTarget < MinDistance) && structure.health < structure.maxHealth)
+                        if ((distanceToTarget < MinDistance) && (structure.health < structure.maxHealth))
                         {
                             MinDistance = distanceToTarget;
                             nearestTarget = target;
@@ -81,16 +83,19 @@ public class StrategicTurretController : MonoBehaviour
             if (nearestTarget != null && MinDistance <= stats.range)
             {
                 target = nearestTarget.transform;
+                canSee = true;
             }
             else
             {
-                target = null;
-            }
+                target = null; 
+                canSee = false;
+            }   
         }
         else { 
             if (target != null) 
             {
                 target = null;
+                canSee = false;
                 StopProduction();
             } 
         }
@@ -111,7 +116,7 @@ public class StrategicTurretController : MonoBehaviour
         }
         //Tracking target
         Utility.LookOnTarget(edge, (target.position - edge.position).normalized, edge_speed);
-        Tracking();
+        //Tracking();
         //Fire
         if (canSee)
         {
@@ -121,59 +126,6 @@ public class StrategicTurretController : MonoBehaviour
         {
             StopProduction();
         }
-    }
-
-    bool compareTagsWith(Collider collider)
-    {
-        foreach(string tag in Objetive_Tag)
-        {
-            if(collider.CompareTag(tag))
-                return true;
-        }
-        return false;
-    }
-
-    void Tracking()
-    {
-        // fl = Fire line Direction 
-        Vector3 fld = fireLine.TransformDirection(Vector3.forward);
-        RaycastHit Obstaclehit;
-        RaycastHit enemyhit;
-
-        if (Physics.Raycast(fireLine.position, fld * stats.range, out Obstaclehit, stats.range, obstacleMask))
-        {
-            if (Obstaclehit.collider != null)
-            {
-                canSee = false;
-                Debug.DrawRay(fireLine.position, fld * Obstaclehit.distance, Color.red);
-            }
-            else
-            {
-                canSee = false;
-                Debug.DrawRay(fireLine.position, fld * Obstaclehit.distance, Color.red);
-            }
-
-        }
-        else if (Physics.Raycast(fireLine.position, fld * stats.range, out enemyhit, stats.range, targetMask))
-        {
-            if (compareTagsWith(enemyhit.collider))
-            {
-                canSee = true;
-                Debug.DrawRay(fireLine.position, fld * enemyhit.distance, Color.green);
-            }
-            else
-            {
-                canSee = false;
-                Debug.DrawRay(fireLine.position, fld * enemyhit.distance, Color.red);
-            }
-
-        }
-        else
-        {
-            canSee = false;
-            Debug.DrawRay(fireLine.position, fld * stats.range, Color.red);
-        }
-
     }
 
     void Laser()
@@ -195,27 +147,26 @@ public class StrategicTurretController : MonoBehaviour
 
     void Produce()
     {
-        foreach(Product product in stats.products)
+        if (!isProducing)
         {
-            if(product.productionType == Production.Energy)
+            foreach (Product product in stats.products)
             {
-                if (!isProducing)
+                if (product.productionType == Production.Energy)
                 {
                     PlayerStats.EnGeneration += product.production;
                     isProducing = true;
                 }
-                    
-            }
-            else if(product.productionType == Production.Material){
-                if (!isProducing)
-                { 
+                else if (product.productionType == Production.Material)
+                {
                     PlayerStats.MatGeneration += product.production;
                     isProducing = true;
                 }
-            }else if(product.productionType == Production.Health)
-            {
-                targetStats = target.GetComponent<StructureStats>();
-                targetStats.heal(product.production * Time.deltaTime);
+                else if (product.productionType == Production.Health)
+                {
+                    targetStats = target.GetComponent<StructureStats>();
+                    if (targetStats.health < targetStats.maxHealth)
+                        targetStats.heal(product.production * Time.deltaTime);
+                }
             }
         }
     }

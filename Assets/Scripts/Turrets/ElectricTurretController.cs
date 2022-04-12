@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ElectricTurretController : MonoBehaviour
 {
-    private StructureStats stats;
+    public StructureStats stats;
 
     public string Objetive_Tag = "Enemy";
     [Range(0f, 1f)]

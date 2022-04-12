@@ -481,8 +481,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 5, z: 1}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &626451753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,6 +505,7 @@ MonoBehaviour:
     production: 30
   - productionType: 3
     production: 5
+  healthBar: {fileID: 1638233201}
   ExplosionEffect: {fileID: 8692721150118124780, guid: 78c78514bf2197f498b554b9213f3873, type: 3}
   health: 0
   isWorking: 0

@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     public float panSpeed = 30f;
     public float panBorderScreen = 30f;
     public float ScroolSpeed = 0.5f;
+    public LayerMask NodeMask;
 
     [Header("Limits")]
     public float minY = 3.5f;
@@ -78,7 +79,7 @@ public class CameraController : MonoBehaviour
         if (ctx.phase == InputActionPhase.Performed &&
             Physics.Raycast(
                 Camera.main.ScreenPointToRay(mousePos),
-                out RaycastHit hit))
+                out RaycastHit hit, NodeMask))
         {
             IMouse mouseMove = hit.collider.gameObject.GetComponent<IMouse>();
             if (!hit.collider.Equals(lastHit.collider))
@@ -108,7 +109,7 @@ public class CameraController : MonoBehaviour
             Physics.Raycast(
                 Camera.main.ScreenPointToRay(
                     Mouse.current.position.ReadValue()),
-                out RaycastHit hit))
+                out RaycastHit hit, NodeMask))
         {
             IMouse mouseDown = hit.collider.gameObject.GetComponent<IMouse>();
 
