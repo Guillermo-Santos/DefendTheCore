@@ -18,5 +18,5 @@ MonoBehaviour:
   - {fileID: 4878371141442882970, guid: 8588707ef400d414cb9168c1fdb9f2e9, type: 3}
   - {fileID: 6110582517591601839, guid: d0b7154ef34a92447b279646c128b282, type: 3}
   Sprite: {fileID: 21300000, guid: 7b798412f107bc5469ae9ff8e0af3790, type: 3}
-  cost: 660
+  materialCost: 680
   upgradedCost: 320

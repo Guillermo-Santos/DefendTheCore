@@ -1,18 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveEnemy : MonoBehaviour
+[Serializable]
+public class WaveEnemy
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject enemy;
+    [Range(1, 5)]
+    public int priority;
 }

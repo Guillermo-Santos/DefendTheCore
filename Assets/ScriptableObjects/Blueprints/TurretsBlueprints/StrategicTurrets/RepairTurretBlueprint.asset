@@ -16,5 +16,5 @@ MonoBehaviour:
   prefabs:
   - {fileID: 7418617741907193251, guid: bac1f7891b3118246ac461944ab51be3, type: 3}
   Sprite: {fileID: 21300000, guid: 82c91fbb8b2073d4ca4b546d2753b882, type: 3}
-  cost: 550
+  materialCost: 550
   upgradedCost: 0

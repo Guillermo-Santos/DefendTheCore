@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverUI;
     public GameObject completeLevelUI;
+    public GameObject CORE;
     public SceneFader sceneFader;
     public bool Editor = false;
     [HideInInspector]
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver)
             return;
-        if(PlayerStats.Lives <= 0)
+        if(CORE == null)
         {
             EndGame();
             return;
@@ -32,13 +33,16 @@ public class GameManager : MonoBehaviour
 
     void EndGame()
     {
+        if (isGameOver)
+            return;
         isGameOver = true;
         gameOverUI.SetActive(true);
     }
 
     public void WinLevel()
     {
-
+        if(isGameOver)
+            return;
         isGameOver = true;
         completeLevelUI.SetActive(true);
     }

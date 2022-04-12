@@ -12,7 +12,7 @@ public class BuildManager : MonoBehaviour
     public GameObject SellEffect;
     public NodoUI nodoUI;
     public bool CanBuild { get { return turretToBuild != null; } }
-    public bool HasMoney { get { return PlayerStats.materials >= turretToBuild.cost; } }
+    public bool HasMoney { get { return PlayerStats.materials >= turretToBuild.materialCost; } }
     void Awake()
     {
         if (instance != null)

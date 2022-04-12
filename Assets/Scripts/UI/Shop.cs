@@ -19,9 +19,16 @@ public class Shop : MonoBehaviour
             Button button = Instantiate(ButtonPrefab, ShopContent);
             button.name = turret.Name;
             button.image.sprite = turret.Sprite;
+            button.GetComponent<ShopButtonComponents>().setComponents(turret.materialCost.ToString(),getEnCost(turret.prefabs[0]).ToString());
             button.onClick.AddListener(delegate { SelectTurret(turret); });
         }
     }
+
+    int getEnCost(GameObject turret)
+    {
+        return turret.GetComponent<StructureStats>().energyCost;
+    }
+
     public void SelectTurret(TurretBlueprint Blueprint)
     {
         //buildingCreator.BlueprintSelected(Blueprint);

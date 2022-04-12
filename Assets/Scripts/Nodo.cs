@@ -41,7 +41,7 @@ public class Nodo : MonoBehaviour, IMouse
         {
             return;
         }
-        PlayerStats.materials -= blueprint.cost;
+        PlayerStats.materials -= blueprint.materialCost;
         GameObject _turret = Instantiate(blueprint.prefabs[0], GetBuildPosition(), blueprint.prefabs[0].transform.rotation);
         turret = _turret;
         turretBlueprint = blueprint;
@@ -66,7 +66,7 @@ public class Nodo : MonoBehaviour, IMouse
         //Build Upgraded turret
         GameObject _turret = Instantiate(turretBlueprint.prefabs[upgradeIndex], GetBuildPosition(), turretBlueprint.prefabs[upgradeIndex].transform.rotation);
         turret = _turret;
-        turretBlueprint.cost += turretBlueprint.upgradedCost;
+        turretBlueprint.materialCost += turretBlueprint.upgradedCost;
 
         GameObject effect = Instantiate(buildManager.BuildEffect, GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 2f);

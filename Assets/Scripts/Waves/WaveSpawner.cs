@@ -17,7 +17,9 @@ public class WaveSpawner : MonoBehaviour
 
     public float WaveCountDown = 10f;
     private int waveIndex = 0;
-    private float CountDown = 5f;
+    private float CountDown = 30f;
+    private int partitions;
+
 
     // Update is called once per frame
     void Update()
@@ -25,8 +27,7 @@ public class WaveSpawner : MonoBehaviour
         if(EnemiesAlive > 0)
         {
             return;
-        }
-        if (waveIndex >= waves.Length)
+        }else if (waveIndex >= waves.Length)
         {
             gameManager.WinLevel();
             this.enabled = false;
@@ -43,6 +44,13 @@ public class WaveSpawner : MonoBehaviour
         WaveCountDownText.text = string.Format("{0:00.00}",CountDown);
     }
 
+    private struct rarity
+    {
+        public int index;
+        public int minPartitions;
+        public int maxPartitions;
+    }
+
     IEnumerator SpawnWave()
     {
         PlayerStats.Rounds++;
@@ -51,10 +59,31 @@ public class WaveSpawner : MonoBehaviour
         
         EnemiesAlive = wave.count;
 
+        partitions = 0;
+
+        List<rarity> rarityList = new List<rarity>();
+        
+        for(int cont = 0; cont < wave.enemies.Count; cont++)
+        {
+            rarity rarity = new rarity();
+            rarity.index = cont;
+            rarity.minPartitions = partitions;
+            rarity.maxPartitions = partitions + wave.enemies[cont].priority;
+            rarityList.Add(rarity);
+            partitions += wave.enemies[cont].priority;
+        }
         for (int i = 0; i < wave.count; i++)
         {
-            SpawnEnemy(wave.enemy);
-            yield return new WaitForSeconds(0.5f);
+            int partition = Random.Range(0, partitions);
+            foreach (rarity rarity in rarityList)
+            {
+                if (partition <= rarity.maxPartitions && partition >= rarity.minPartitions)
+                {
+                    SpawnEnemy(wave.enemies[rarity.index].enemy);
+                    break;
+                }
+            }
+            yield return new WaitForSeconds(wave.spawnRate);
         }
         waveIndex++;
     }

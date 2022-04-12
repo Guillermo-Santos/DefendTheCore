@@ -63,7 +63,7 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             stats.canMove = false;
-            //target = stats.lastObjetive.transform;
+            target = null;
         }
 
         if(stats.canMove)
@@ -193,6 +193,11 @@ public class EnemyMovement : MonoBehaviour
 
     void setDirection()
     {
+        if (target == null)
+        {
+            Stop();
+            return;
+        }
         Direction = target.position - transform.position;
     }
 
@@ -201,7 +206,7 @@ public class EnemyMovement : MonoBehaviour
         //as this method is called when the waypoint is not a core or structure, this if
         //prevent any errors by restaring the waypoints so that the enemy move on a loop when there is not a core
         //on the way
-        if (wavepointIndex >= WayPoints.points.Length - 1)
+        if (wavepointIndex >= WayPoints.points.Count - 1)
         {
             resetTarget();
             return;
