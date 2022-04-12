@@ -6,15 +6,19 @@ public class GameManager : MonoBehaviour
 {
 
     public GameObject gameOverUI;
+    public AudioClip gameOverClip;
     public GameObject completeLevelUI;
+    public AudioClip completeLeveClip;
     public GameObject CORE;
     public SceneFader sceneFader;
     public bool Editor = false;
     [HideInInspector]
     public static bool isGameOver;
     public static bool isEditor;
+    private AudioSource audioSource;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         isGameOver = false;    
         isEditor = Editor;
     }
@@ -35,6 +39,9 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver)
             return;
+        audioSource.loop = false;
+        audioSource.clip = gameOverClip;
+        audioSource.Play();
         isGameOver = true;
         gameOverUI.SetActive(true);
     }
@@ -43,6 +50,9 @@ public class GameManager : MonoBehaviour
     {
         if(isGameOver)
             return;
+        audioSource.loop = false;
+        audioSource.clip = completeLeveClip;
+        audioSource.Play();
         isGameOver = true;
         completeLevelUI.SetActive(true);
     }

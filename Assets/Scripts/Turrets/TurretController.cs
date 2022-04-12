@@ -33,12 +33,12 @@ public class TurretController : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstacleMask;
 
-
     private bool canSee;
-
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         stats = GetComponent<StructureStats>();
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
@@ -82,6 +82,9 @@ public class TurretController : MonoBehaviour
 
     void Shoot()
     {
+
+        if (!audioSource.isPlaying)
+            audioSource.Play();
         GameObject Bullet_O = (GameObject)Instantiate(bullet, firePoint.position, firePoint.rotation);
         Bullet bullet_sc = Bullet_O.GetComponent<Bullet>();
         if (bullet_sc != null)
@@ -172,6 +175,8 @@ public class TurretController : MonoBehaviour
 
     void Laser()
     {
+        if(!audioSource.isPlaying)
+            audioSource.Play();
         //Laser damage
 
         targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);

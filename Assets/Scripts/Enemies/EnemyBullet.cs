@@ -11,13 +11,20 @@ public class EnemyBullet : MonoBehaviour
 	public float explosionRadius = 0f;
 	public GameObject ImpactEffect;
 
+	private AudioSource impactSource;
+
 	public void Seek(Transform _target)
 	{
 		target = _target;
 	}
 
-	// Update is called once per frame
-	void Update()
+    private void Start()
+    {
+		impactSource = GetComponent<AudioSource>();
+	}
+
+    // Update is called once per frame
+    void Update()
 	{
 		if (target == null)
 		{
@@ -41,6 +48,7 @@ public class EnemyBullet : MonoBehaviour
 
 	void HitTarget()
 	{
+		impactSource.Play();
 		GameObject effect = (GameObject)Instantiate(ImpactEffect, transform.position, transform.rotation);
 		effect.transform.GetComponent<ParticleSystem>().Play();
 		Destroy(effect, 5f);

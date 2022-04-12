@@ -12,13 +12,21 @@ public class Bullet : MonoBehaviour
 	public float explosionRadius = 0f;
 	public GameObject ImpactEffect;
 	
+	private AudioSource impactSource;
+	private bool hasHit = false;
 	public void Seek (Transform _target)
 	{
 		target = _target;
 	}
 
-	// Update is called once per frame
-	void Update()
+    private void Start()
+    {
+        impactSource = GetComponent<AudioSource>();
+		
+	}
+
+    // Update is called once per frame
+    void Update()
 	{
 		if (target == null) 
 		{
@@ -39,9 +47,14 @@ public class Bullet : MonoBehaviour
 		transform.Translate(dir.normalized * distanceFPS, Space.World);
 		transform.LookAt(target);
 	}
-	
+
 	void HitTarget()
 	{
+		if (hasHit)
+			return;
+		hasHit = true;
+
+		
 		GameObject effect = (GameObject)Instantiate(ImpactEffect,transform.position,transform.rotation);
 		effect.transform.GetComponent<ParticleSystem>().Play();
 		Destroy(effect, 5f);
@@ -53,7 +66,10 @@ public class Bullet : MonoBehaviour
         {
 			Damage(target);
         }
-		Destroy(gameObject);
+		if(!impactSource.isPlaying)
+			impactSource.Play();
+
+		Destroy(gameObject, impactSource.clip.length);
 	}
 	void Damage(Transform enemy)
 	{

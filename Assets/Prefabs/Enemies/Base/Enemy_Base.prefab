@@ -369,6 +369,7 @@ MonoBehaviour:
   startHealth: 100
   MoneyDrop: 25
   startSpeed: 1
+  impactDamage: 10
   floorDistance: 1
   moveOverMask:
     serializedVersion: 2
@@ -376,6 +377,7 @@ MonoBehaviour:
   Target: 0
   targetParent: {fileID: 0}
   canMove: 1
+  canAtack: 0
   firePoint: {fileID: 0}
   targetMask:
     serializedVersion: 2

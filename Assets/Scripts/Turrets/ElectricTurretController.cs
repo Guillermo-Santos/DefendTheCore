@@ -11,10 +11,11 @@ public class ElectricTurretController : MonoBehaviour
     public float SlowPct = .75f;
     [HideInInspector]
     public List<EnemyStats> targets;
-
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         stats = GetComponent<StructureStats>();
     }
 
@@ -47,6 +48,8 @@ public class ElectricTurretController : MonoBehaviour
     {
         if (targets.Count > 0)
         {
+            if(!audioSource.isPlaying)
+                audioSource.Play();
             foreach (EnemyStats target in targets)
             {
                 target.Slow(SlowPct);

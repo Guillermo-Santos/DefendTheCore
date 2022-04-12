@@ -369,15 +369,30 @@ MonoBehaviour:
   startHealth: 350
   MoneyDrop: 35
   startSpeed: 0.7
+  impactDamage: 20
   floorDistance: 0.5
   moveOverMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   Target: 0
+  targetParent: {fileID: 0}
+  canMove: 1
+  canAtack: 0
+  firePoint: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  Objetive_Tag: 
+  lastObjetive: {fileID: 0}
+  bullet: {fileID: 0}
+  range: 0
+  fireRate: 1
+  fireCountdown: 1
   DeadEffect: {fileID: 1813651558585011878, guid: 7b7d350ae630d404195363e8b19a713c, type: 3}
   healthBar: {fileID: 1587865994}
   health: 100
   speed: 2
+  CoreTag: 
 --- !u!114 &7435489693258316838
 MonoBehaviour:
   m_ObjectHideFlags: 0

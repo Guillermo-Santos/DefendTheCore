@@ -27,11 +27,12 @@ public class StrategicTurretController : MonoBehaviour
 
     private bool canSee;
     private bool isProducing;
-
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         stats = GetComponent<StructureStats>();
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
@@ -64,7 +65,6 @@ public class StrategicTurretController : MonoBehaviour
                     distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
                     if (stats.isHealer)
                     {
-                        Debug.Log(target.name);
                         StructureStats structure = target.GetComponent<StructureStats>();
                         if ((distanceToTarget < MinDistance) && (structure.health < structure.maxHealth))
                         {
@@ -130,6 +130,8 @@ public class StrategicTurretController : MonoBehaviour
 
     void Laser()
     {
+        if(!audioSource.isPlaying)
+            audioSource.Play();
         //Visual
         if (!lineRenderer.enabled)
         {
