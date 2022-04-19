@@ -448,19 +448,20 @@ MonoBehaviour:
   startHealth: 175
   MoneyDrop: 65
   startSpeed: 2.5
+  impactDamage: 5
   floorDistance: 1
   moveOverMask:
     serializedVersion: 2
     m_Bits: 128
   Target: 1
-  targetParent: {fileID: 0}
   canMove: 1
+  canAtack: 0
   firePoint: {fileID: 6578811827522144764}
   targetMask:
     serializedVersion: 2
     m_Bits: 512
   Objetive_Tag: StrategicTurret
-  lastObjetive: {fileID: 7833020290770722441, guid: e46e4b48dc4a2704bbc8a734e0d7304a, type: 3}
+  lastObjetive: {fileID: 7354968138283439489, guid: e46e4b48dc4a2704bbc8a734e0d7304a, type: 3}
   bullet: {fileID: 7502734544082668818, guid: 77e8d660c1037834e8a580ace9f3f656, type: 3}
   range: 2
   fireRate: 0.5

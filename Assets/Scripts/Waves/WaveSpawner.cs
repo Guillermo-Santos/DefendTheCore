@@ -16,8 +16,8 @@ public class WaveSpawner : MonoBehaviour
     public GameManager gameManager;
 
     public float WaveCountDown = 10f;
+    public float CountDown = 30f;
     private int waveIndex = 0;
-    private float CountDown = 30f;
     private int partitions;
 
 

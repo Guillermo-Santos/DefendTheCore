@@ -16,7 +16,6 @@ public class EnemyStats : MonoBehaviour
     public float floorDistance = 1f;
     public LayerMask moveOverMask;
     public Targets Target = Targets.WayPoints;
-    public Transform targetParent;
     public bool canMove = true;
     public bool canAtack = false;
     [Header("Enemy Atack")]

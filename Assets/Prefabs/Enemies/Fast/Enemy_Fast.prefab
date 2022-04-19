@@ -370,12 +370,11 @@ MonoBehaviour:
   MoneyDrop: 30
   startSpeed: 3.5
   impactDamage: 7
-  floorDistance: 0.5
+  floorDistance: 1
   moveOverMask:
     serializedVersion: 2
     m_Bits: 128
   Target: 0
-  targetParent: {fileID: 0}
   canMove: 1
   canAtack: 0
   firePoint: {fileID: 0}

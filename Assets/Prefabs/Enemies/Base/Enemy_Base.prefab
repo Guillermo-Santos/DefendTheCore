@@ -375,7 +375,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   Target: 0
-  targetParent: {fileID: 0}
   canMove: 1
   canAtack: 0
   firePoint: {fileID: 0}

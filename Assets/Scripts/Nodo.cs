@@ -33,11 +33,16 @@ public class Nodo : MonoBehaviour, IMouse
         StartColor = rend.material.color;
         buildManager = BuildManager.instance;
         upgradeIndex = 0;
+        if (turretBlueprint != null)
+        {
+            buildManager.SelectTurretToBuild(turretBlueprint);
+            BuildTurret(turretBlueprint, true);
+        }
     }
 
-    void BuildTurret(TurretBlueprint blueprint)
+    void BuildTurret(TurretBlueprint blueprint, bool isFree)
     {        
-        if (!buildManager.HasMoney)
+        if (!buildManager.HasMoney && !isFree)
         {
             return;
         }
@@ -123,7 +128,7 @@ public class Nodo : MonoBehaviour, IMouse
         if (!buildManager.CanBuild)
             return;
 
-        BuildTurret(buildManager.GetTurretToBuild());
+        BuildTurret(buildManager.GetTurretToBuild(),false);
     }
 
 

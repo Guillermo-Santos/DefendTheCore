@@ -77,12 +77,12 @@ public class EnemyMovement : MonoBehaviour
 
         if (stats.canMove)
         {
-            Utility.LookOnTarget(transform,Direction,stats.speed);
             Move();
+            Utility.LookOnTarget(transform, Direction, stats.speed);
 
-            if(stats.Target == Targets.WayPoints)
+            if (stats.Target == Targets.WayPoints)
             {
-                if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target.position.x, target.position.z)) <= 0.3f)
+                if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target.position.x, target.position.z)) <= 0.1f)
                 {
                     NextAction();
                 }
@@ -126,7 +126,7 @@ public class EnemyMovement : MonoBehaviour
                 float Distance = Vector3.Distance(Downhit.collider.transform.position, transform.position);
                 if (Distance < stats.floorDistance)
                 {
-                    Direction.y = Direction.y + stats.floorDistance;
+                    Direction.y = Direction.y + stats.floorDistance; 
                     MoveUp(new Vector3(transform.position.x, Direction.y + stats.floorDistance, transform.position.z));
                     Debug.DrawRay(transform.position, down * Downhit.distance, Color.yellow);
                 }
@@ -158,8 +158,8 @@ public class EnemyMovement : MonoBehaviour
         {
             if (Fwdhit.collider != null)
             {
-                Direction.y = Direction.y + stats.floorDistance;
-                MoveUp(new Vector3(transform.position.x,Direction.y+stats.floorDistance, transform.position.z));
+                Direction.y = Direction.y + stats.floorDistance; 
+                MoveUp(new Vector3(transform.position.x, Direction.y + stats.floorDistance, transform.position.z));
                 Debug.DrawRay(transform.position, fwd * Fwdhit.distance, Color.yellow);
             }
             else
@@ -198,7 +198,7 @@ public class EnemyMovement : MonoBehaviour
             Stop();
             return;
         }
-        Direction = target.position - transform.position;
+        Direction = (target.position - transform.position).normalized;
     }
 
     void getNextWaypoint()
