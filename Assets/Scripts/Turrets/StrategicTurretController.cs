@@ -44,7 +44,9 @@ public class StrategicTurretController : MonoBehaviour
         {
             GameObject[] found = GameObject.FindGameObjectsWithTag(tag);
             if(found != null && found.Length > 0)
-                pTargets.AddRange(found);
+                foreach(GameObject target in found)
+                    if(target != null)
+                        pTargets.Add(target);
         }
         return pTargets.ToArray();
     }
@@ -65,11 +67,14 @@ public class StrategicTurretController : MonoBehaviour
                     distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
                     if (stats.isHealer)
                     {
-                        StructureStats structure = target.GetComponent<StructureStats>();
-                        if ((distanceToTarget < MinDistance) && (structure.health < structure.maxHealth))
+                        StructureStats structure;
+                        if (target.TryGetComponent<StructureStats>(out structure)) 
                         {
-                            MinDistance = distanceToTarget;
-                            nearestTarget = target;
+                            if ((distanceToTarget < MinDistance) && (structure.health < structure.maxHealth))
+                            {
+                                MinDistance = distanceToTarget;
+                                nearestTarget = target;
+                            } 
                         }
                     }
                     else if (distanceToTarget < MinDistance)

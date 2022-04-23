@@ -5,11 +5,9 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public int startMaterials = 150;
-    public int startLives = 20;
     public int maxEnergy = 100;
     [HideInInspector]
     public static float materials;
-    public static int Lives;
     public static int Rounds;
     public static float Energy;
     public static int MatGeneration = 0;
@@ -19,7 +17,6 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         materials = startMaterials;
-        Lives = startLives;
         Energy = maxEnergy;
         Rounds = 0;
     }

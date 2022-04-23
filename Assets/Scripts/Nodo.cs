@@ -41,12 +41,16 @@ public class Nodo : MonoBehaviour, IMouse
     }
 
     void BuildTurret(TurretBlueprint blueprint, bool isFree)
-    {        
+    {
         if (!buildManager.HasMoney && !isFree)
         {
             return;
         }
-        PlayerStats.materials -= blueprint.materialCost;
+        
+        if (!isFree) { 
+            PlayerStats.materials -= blueprint.materialCost;
+        }
+        
         GameObject _turret = Instantiate(blueprint.prefabs[0], GetBuildPosition(), blueprint.prefabs[0].transform.rotation);
         turret = _turret;
         turretBlueprint = blueprint;

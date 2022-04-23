@@ -10932,23 +10932,17 @@ MonoBehaviour:
   - enemies:
     - enemy: {fileID: 6889009473683619268, guid: 3bf8fcfad4cd8af498f6825d99204a57, type: 3}
       priority: 5
-    count: 50
+    count: 10
     spawnRate: 0.5
   - enemies:
     - enemy: {fileID: 6889009473683619268, guid: 3bf8fcfad4cd8af498f6825d99204a57, type: 3}
       priority: 5
-    - enemy: {fileID: 6889009473683619268, guid: e51b6336e3f96744189f194934014d5c, type: 3}
-      priority: 4
-    count: 5
+    count: 20
     spawnRate: 0.5
   - enemies:
     - enemy: {fileID: 6889009473683619268, guid: 3bf8fcfad4cd8af498f6825d99204a57, type: 3}
-      priority: 4
-    - enemy: {fileID: 6889009473683619268, guid: 7df0e72a668a3cb49bbd12feefc6b6df, type: 3}
-      priority: 3
-    - enemy: {fileID: 6889009473683619268, guid: e51b6336e3f96744189f194934014d5c, type: 3}
-      priority: 4
-    count: 10
+      priority: 5
+    count: 50
     spawnRate: 0.5
   SpawnPoint: {fileID: 1013443150}
   WaveCountDownText: {fileID: 624874878}

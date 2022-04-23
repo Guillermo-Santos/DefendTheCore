@@ -31224,29 +31224,41 @@ MonoBehaviour:
   - enemies:
     - enemy: {fileID: 6889009473683619268, guid: 3bf8fcfad4cd8af498f6825d99204a57, type: 3}
       priority: 5
-    count: 5
+    - enemy: {fileID: 6889009473683619268, guid: 7df0e72a668a3cb49bbd12feefc6b6df, type: 3}
+      priority: 4
+    - enemy: {fileID: 6889009473683619268, guid: e51b6336e3f96744189f194934014d5c, type: 3}
+      priority: 4
+    - enemy: {fileID: 8773141274914152001, guid: 28b18388504e67a449532d4d2cb7269c, type: 3}
+      priority: 3
+    count: 15
     spawnRate: 0.5
   - enemies:
     - enemy: {fileID: 6889009473683619268, guid: 3bf8fcfad4cd8af498f6825d99204a57, type: 3}
       priority: 5
+    - enemy: {fileID: 6889009473683619268, guid: 7df0e72a668a3cb49bbd12feefc6b6df, type: 3}
+      priority: 4
     - enemy: {fileID: 6889009473683619268, guid: e51b6336e3f96744189f194934014d5c, type: 3}
       priority: 4
-    count: 5
+    - enemy: {fileID: 8773141274914152001, guid: 28b18388504e67a449532d4d2cb7269c, type: 3}
+      priority: 3
+    count: 20
     spawnRate: 0.5
   - enemies:
     - enemy: {fileID: 6889009473683619268, guid: 3bf8fcfad4cd8af498f6825d99204a57, type: 3}
-      priority: 4
+      priority: 5
     - enemy: {fileID: 6889009473683619268, guid: 7df0e72a668a3cb49bbd12feefc6b6df, type: 3}
-      priority: 3
+      priority: 4
     - enemy: {fileID: 6889009473683619268, guid: e51b6336e3f96744189f194934014d5c, type: 3}
       priority: 4
-    count: 10
+    - enemy: {fileID: 8773141274914152001, guid: 28b18388504e67a449532d4d2cb7269c, type: 3}
+      priority: 3
+    count: 25
     spawnRate: 0.5
   SpawnPoint: {fileID: 1528119071}
   WaveCountDownText: {fileID: 624874878}
   gameManager: {fileID: 1208714263}
   WaveCountDown: 15
-  CountDown: 10
+  CountDown: 20
 --- !u!114 &1208714266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54149,6 +54161,7 @@ Transform:
   - {fileID: 1372242989}
   - {fileID: 1953415117}
   - {fileID: 547520623}
+  - {fileID: 216306647}
   - {fileID: 1505781028}
   - {fileID: 149269642}
   - {fileID: 1346411270}
@@ -54167,6 +54180,7 @@ Transform:
   - {fileID: 1833062400}
   - {fileID: 1755823026}
   - {fileID: 1112304983}
+  - {fileID: 1076612015}
   - {fileID: 602952954}
   - {fileID: 1365938516}
   - {fileID: 1794643762}
@@ -54174,49 +54188,47 @@ Transform:
   - {fileID: 2136057633}
   - {fileID: 1970919968}
   - {fileID: 1781810049}
+  - {fileID: 1665960944}
   - {fileID: 1953840176}
+  - {fileID: 1660189750}
   - {fileID: 1223182674}
+  - {fileID: 2071288472}
   - {fileID: 170044944}
   - {fileID: 1617937952}
   - {fileID: 1498201519}
   - {fileID: 947867381}
+  - {fileID: 403590131}
   - {fileID: 129872735}
   - {fileID: 1456339699}
   - {fileID: 1218789108}
-  - {fileID: 1622931662}
-  - {fileID: 2071288472}
-  - {fileID: 1076612015}
   - {fileID: 714101974}
-  - {fileID: 588716109}
-  - {fileID: 612629697}
-  - {fileID: 403590131}
-  - {fileID: 1954528814}
-  - {fileID: 1665960944}
-  - {fileID: 1495049639}
-  - {fileID: 707315367}
-  - {fileID: 1590246823}
-  - {fileID: 98035622}
-  - {fileID: 323748197}
-  - {fileID: 817399229}
-  - {fileID: 1044164391}
-  - {fileID: 226714050}
-  - {fileID: 1660189750}
-  - {fileID: 216306647}
+  - {fileID: 1622931662}
+  - {fileID: 1477940381}
   - {fileID: 950244492}
-  - {fileID: 661144545}
-  - {fileID: 20838528}
   - {fileID: 1709847339}
+  - {fileID: 661144545}
+  - {fileID: 1010306163}
+  - {fileID: 20838528}
+  - {fileID: 588716109}
+  - {fileID: 1509992552}
+  - {fileID: 612629697}
   - {fileID: 2066517762}
   - {fileID: 607144049}
-  - {fileID: 1477940381}
+  - {fileID: 1954528814}
   - {fileID: 885347254}
-  - {fileID: 1509992552}
-  - {fileID: 1010306163}
-  - {fileID: 1749065695}
+  - {fileID: 1495049639}
+  - {fileID: 707315367}
   - {fileID: 1655804746}
+  - {fileID: 1749065695}
+  - {fileID: 1590246823}
+  - {fileID: 98035622}
+  - {fileID: 1044164391}
+  - {fileID: 323748197}
   - {fileID: 1785828864}
   - {fileID: 280527511}
+  - {fileID: 817399229}
   - {fileID: 463612731}
+  - {fileID: 226714050}
   - {fileID: 1121084}
   - {fileID: 1367697113}
   m_Father: {fileID: 1096954083}
