@@ -6,7 +6,8 @@ using UnityEngine;
 public static class Utility
 {
     /// <summary>
-    /// Sort the array on random
+    /// NOT IMPLEMENTET
+    /// Shuffle the array on random
     /// </summary>
     /// <typeparam name="T"> type of the array </typeparam>
     /// <param name="array"> array of data to sort </param>

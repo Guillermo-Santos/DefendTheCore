@@ -68,6 +68,4 @@ public class PlayerStats : MonoBehaviour
         
         Energy += amount;
     }
-
-
 }
